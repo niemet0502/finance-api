@@ -22,3 +22,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('user', 'UserController');
 Route::get('user/getClientByUser/{id}', 'UserController@getClientByUser');
 Route::apiResource('client', 'ClientController');
+Route::apiResource('profil', "ProfilController");
