@@ -17,6 +17,10 @@ class ClientController extends Controller
         return Client::all();
     }
 
+    public function getCompteByClient($id){
+        return Client::find($id)->Comptes;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
