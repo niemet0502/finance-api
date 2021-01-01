@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Profil;
+use App\Profil;
 class ProfilController extends Controller
 {
     /**

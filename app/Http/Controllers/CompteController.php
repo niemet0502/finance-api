@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
-
-class UserController extends Controller
+use App\Compte;
+class CompteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,13 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::all();
-        //return $users->toJson(JSON_)
-    }
-
-    public function getClientByUser($id)
-    {
-        return User::find($id)->Clients;
+        return Compte::all();
     }
 
     /**
@@ -31,9 +24,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if(User::create($request->all())) {
+        if(Compte::create($request->all())) {
             return response()->json([
-                'success' => 'Actualité créée avec succès'
+                'success' => 'Compte créée avec succès'
             ], 200);
         }
     }
@@ -41,42 +34,33 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Compte $compte)
     {
-        $array = [
-            'user' => $user,
-            'profil' => $user->Profil,
-        ];
-        return $user;
+        return $compte;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        if($user->update($request->all())) {
-            $user->save();
-            return response()->json([
-                'success' => 'User modifier avec success'
-            ], 200);
-        }
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
         //
     }
