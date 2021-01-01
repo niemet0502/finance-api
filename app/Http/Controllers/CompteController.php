@@ -49,9 +49,14 @@ class CompteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Compte $compte)
     {
-        //
+        if($compte->update($request->all())) {
+            $compte->save();
+            return response()->json([
+                'success' => 'Compte modifier avec success'
+            ], 200);
+        }
     }
 
     /**
@@ -60,8 +65,8 @@ class CompteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Compte $compte)
     {
-        //
+        $compte->delete();
     }
 }
