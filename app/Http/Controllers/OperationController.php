@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Client;
 use Illuminate\Http\Request;
-
-class ClientController extends Controller
+use App\Operation;
+class OperationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +13,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return Client::all();
-    }
-
-    public function getCompteByClient($id){
-        return Client::find($id)->Comptes;
+        return Operation::all();
     }
 
     /**
@@ -29,9 +24,9 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        if (Client::create($request->all())) {
+        if(Operation::create($request->all())) {
             return response()->json([
-                'success' => 'Actualité créée avec succès'
+                'success' => 'Operation effectuer avec succès'
             ], 200);
         }
     }
@@ -39,38 +34,45 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Client  $client
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Compte $compte)
+    public function show(Operation $operation)
     {
         $array = [
-            'compte' => $compte,
-            'client' => $client->Client,
+            'operation' => $operation,
+            'client' => $operation->Client,
+            'compte' => $operation->Compte,
+            'type' => $operation->Type
         ];
-        return $compte;
+        return $operation;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Client  $client
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Operation $operation)
     {
-        //
+        if($operation->update($request->all())) {
+            $operation->save();
+            return response()->json([
+                'success' => 'Operation modifier avec success'
+            ], 200);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Client  $client
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
-    {
-        //
+    public function destroy(Operation $operation)
+    {   
+        $operation->delete();
     }
 }
