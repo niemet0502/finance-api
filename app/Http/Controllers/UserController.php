@@ -18,6 +18,11 @@ class UserController extends Controller
         //return $users->toJson(JSON_)
     }
 
+    public function getClientByUser($id)
+    {
+        return User::find($id);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

@@ -40,6 +40,10 @@ class ClientController extends Controller
      */
     public function show(Client $client)
     {
+        $array = [
+            'client' => $client,
+            'user' => $client->User,
+        ];
         return $client;
     }
 
