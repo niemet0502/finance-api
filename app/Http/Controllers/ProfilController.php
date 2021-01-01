@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Profil;
 class ProfilController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        //
+        return Profil::all(); 
     }
 
     /**
@@ -24,7 +24,11 @@ class ProfilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (Profil::create($request->all())) {
+            return response()->json([
+                'success' => 'Profil créée avec succès'
+            ], 200);
+        }
     }
 
     /**
@@ -33,9 +37,9 @@ class ProfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Profil $profil)
     {
-        //
+        return $profil;
     }
 
     /**

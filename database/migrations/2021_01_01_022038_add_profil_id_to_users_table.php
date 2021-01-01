@@ -14,7 +14,7 @@ class AddProfilIdToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('profil_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('profil_id')->constrained()->cascadeOnDelete()->nullable();
         });
     }
 
