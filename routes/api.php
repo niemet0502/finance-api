@@ -22,5 +22,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('user', 'UserController');
 Route::get('user/getClientByUser/{id}', 'UserController@getClientByUser'); // les clients creer par un user
 Route::get('client/getCompteByClient/{id}','ClientController@getCompteByClient'); // les comptes d'un clients
+Route::get('compte/getOperationByCompte/{id}', 'CompteController@getOperationByCompte'); // operation d'un compte
 Route::apiResource('client', 'ClientController');
 Route::apiResource('profil', "ProfilController");

@@ -16,6 +16,10 @@ class CompteController extends Controller
         return Compte::all();
     }
 
+
+    public function getOperationByCompte($id){
+        return Compte::find($id)->Operations;
+    }
     /**
      * Store a newly created resource in storage.
      *
